@@ -30,19 +30,19 @@ public class carPartController
         return service.getPart(partNumber);
     }
 
-    @PostMapping("/parts/add")
+    @PostMapping("/parts")
     public CarPart addPart(@RequestBody CarPart part)
     {
         return service.addPart(part);
     }
 
-    @PutMapping("/parts/update/{partNumber}")
+    @PutMapping("/parts/{partNumber}")
     public CarPart updatePart(@RequestBody CarPart part, @PathVariable String partNumber)
     {
         return service.updatePart(part, partNumber);
     }
 
-    @DeleteMapping("/parts/delete/{partNumber}")
+    @DeleteMapping("/parts/{partNumber}")
     public void deleteById(@PathVariable String partNumber)
     {
         service.deleteById(partNumber);
@@ -54,7 +54,7 @@ public class carPartController
         return service.getPartsLowStock(threshold);
     }
 
-    @PutMapping("parts/reserve/{partNumber}")
+    @PutMapping("parts/{partNumber}/reserve")
     public CarPart reservePart(@PathVariable String partNumber,
                                @RequestParam int numberOfUnits)
     {

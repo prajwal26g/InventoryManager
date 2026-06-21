@@ -22,13 +22,13 @@ public class CarPartService
     public CarPart getPart(String partNumber)
     {
         return carPartRepository.findById(partNumber).orElseThrow(() ->
-                new ResourceNotFoundException("User with " + partNumber + " not found"));
+                new ResourceNotFoundException("Part with Part Number" + partNumber +
+                        " not found"));
     }
 
     public void deleteById(String partNumber)
     {
-        if (!carPartRepository.existsById(partNumber))
-            throw new ResourceNotFoundException("Part does not exist");
+        getPart(partNumber); //throws error if the part does not exist
         carPartRepository.deleteById(partNumber);
     }
 
