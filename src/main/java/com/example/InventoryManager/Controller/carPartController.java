@@ -1,7 +1,10 @@
 package com.example.InventoryManager.Controller;
 
+import com.example.InventoryManager.Exception.ResourceNotFoundException;
 import com.example.InventoryManager.entity.CarPart;
 import com.example.InventoryManager.Service.CarPartService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +14,18 @@ import java.util.List;
 public class carPartController
 {
     private final CarPartService service;
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleBadInput(IllegalArgumentException e)
+    {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not enough stock available");
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleBadInput(ResourceNotFoundException e)
+    {
+        return ResponseEntity.status(404).body("Part does not exist");
+    }
 
     // We inject the service into the controller also called Constructor-Injection
     public carPartController(CarPartService service)

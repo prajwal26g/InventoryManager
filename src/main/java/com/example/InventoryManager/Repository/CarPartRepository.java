@@ -24,6 +24,6 @@ public interface CarPartRepository extends JpaRepository<CarPart, String>
     count(): Returns the total number of entities.
     deleteById(ID id): Deletes the entity with the given ID.
     delete(T entity): Deletes a specific entity instance.
-    deleteAll(): Deletes all entities managed by the repository
+    deleteAll(): Deletes all entities.
      */
 }
